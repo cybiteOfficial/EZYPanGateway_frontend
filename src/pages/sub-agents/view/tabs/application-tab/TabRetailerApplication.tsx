@@ -1,0 +1,128 @@
+import React, { useEffect } from "react";
+import { IconType } from "react-icons";
+import { BiCard } from "react-icons/bi";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { getTabs } from "src/utils/auth/getTabs";
+import { switchToAuthModule } from "src/utils/auth/switchToAuthModule";
+
+type Props = {};
+
+const tabs: {
+  label: string;
+  icon: IconType;
+  path: string;
+  moduleName: string;
+  type: "MODULE" | "ACTION" | "FIELD";
+}[] = [
+  {
+    label: "PAN",
+    icon: BiCard,
+    type: "MODULE",
+    moduleName: "PAN_APPLICATIONS",
+    path: "pan",
+  },
+  {
+    label: "ITR",
+    icon: BiCard,
+    path: "itr",
+    type: "MODULE",
+    moduleName: "ITR_APPLICATIONS",
+  },
+  {
+    label: "Gumasta",
+    icon: BiCard,
+    path: "gumasta",
+    type: "MODULE",
+    moduleName: "GUMASTA_APPLICATIONS",
+  },
+  {
+    label: "DSC",
+    icon: BiCard,
+    path: "dsc",
+    type: "MODULE",
+    moduleName: "DSC_APPLICATIONS",
+  },
+  {
+    label: "MSME",
+    icon: BiCard,
+    path: "msme",
+    type: "MODULE",
+    moduleName: "MSME_APPLICATIONS",
+  },
+  {
+    label: "Digital PAN",
+    icon: BiCard,
+    path: "digital-pan",
+    type: "MODULE",
+    moduleName: "STC_DIGITAL_PAN",
+  },
+];
+
+const TabRetailerApplication = (props: Props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { state } = location;
+
+  const currentPath = location.pathname.split("/")[4];
+  useEffect(() => {
+    navigate(
+      location.pathname.split("/").reverse()[0] === "applications"
+        ? switchToAuthModule([
+            { moduleName: "PAN_APPLICATIONS", path: "pan" },
+            { moduleName: "ITR_APPLICATIONS", path: "itr" },
+            { moduleName: "GUMASTA_APPLICATIONS", path: "gumasta" },
+            { moduleName: "DSC_APPLICATIONS", path: "dsc" },
+            { moduleName: "MSME_APPLICATIONS", path: "msme" },
+          ]) || "pan"
+        : location.pathname.split("/").reverse()[0],
+      {
+        state: state,
+      }
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div className="flex flex-col grow overflow-auto h-full gap-2 ">
+      {/* Tabs */}
+      {tabs?.length && (
+        <div className="flex gap-3 items-center px-3 mx-4 shadow border  rounded border-gray-100 bg-white ">
+          {getTabs(tabs)?.map((tab, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                onClick={() =>
+                  navigate(tab.path, {
+                    state: state,
+                  })
+                }
+                className={`h-full px-5 py-1 flex gap-2  items-center focus:hover:text-primary-main font-medium text-sm
+                  ${
+                    currentPath === tab.path
+                      ? "text-primary-main  bg-slate-200"
+                      : "text-gray-700"
+                  }
+                   `}
+              >
+                <div className=" text-lg  ">
+                  <tab.icon />
+                </div>
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Outlet */}
+      <div className="grow overflow-auto">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default TabRetailerApplication;

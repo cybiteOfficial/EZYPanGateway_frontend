@@ -1,0 +1,17 @@
+export const tagTypesList = [
+  "distributor",
+  "retailer",
+  "guest-user",
+  "dashboard",
+  "menu-links",
+  "banner",
+  "itr-application",
+  "msme - application",
+  "gallery-images",
+  "users",
+  "categoryDialog",
+  "pending-applications",
+  "pan-category",
+  "itr-category",
+  'admin',
+];

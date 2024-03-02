@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-light: #d1e1fd;
+  --primary-main: #0064c4;
+  --primary-dark: #314782;
+  --secondary-main: #e67325;
+  --secondary-light: #fc9e60;
+}
+.bg-primary-1 {
+  background: linear-gradient(100.59deg, #314782 0.92%, #0064c4 97.4%);
+}
+.bg-primary-2 {
+  background: linear-gradient(101.05deg, #244364 1.91%, #5693d3 96.94%);
+}
+.bg-primary-3 {
+  background: linear-gradient(101.64deg, #247084 0.77%, #12bae6 100%);
+}
+.bg-primary-4 {
+  background: linear-gradient(101.8deg, #0d8da7 0.91%, #3cd1f0 94.55%);
+}
+.bg-primary-5 {
+  background: linear-gradient(101.7deg, #051926 6.68%, #187dbc 100%);
+}
+.bg-primary-6 {
+  background: linear-gradient(101.64deg, #0c4a50 0%, #4cd7e5 100%);
+}
+.bg-primary-7 {
+  background: linear-gradient(101.64deg, #4da0b0
+   0%,  #185a9d 100%);
+}
+.bg-primary-8 {
+  background: linear-gradient(101.64deg,   #005c97 0%,  #247084 100%);}
+
+.lg-react-element {
+  display: grid !important;
+  grid-gap: 15px !important;
+} 
+@media not all and (max-width:640px) {
+  .lg-react-element {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    grid-gap: 15px !important;
+  } 
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+::-webkit-scrollbar-thumb {
+  /* width: 5px!important; */
+  background-color: #a0a0a0 !important;
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 4px !important;
+  margin-top: 10px !important;
+  padding-top: 5px !important;
+}
